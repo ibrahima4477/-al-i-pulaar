@@ -13,7 +13,7 @@ class PhotoComponent extends Component
     //-----------------------------------------------------------------------------------------
     //Les photos
     $action = $this->request->getParam('action');
-    //debug($action); die();
+    //Add actions
     if (in_array($action, array(
       'add',
       'addArticleComment',
@@ -41,16 +41,14 @@ class PhotoComponent extends Component
       }
 
     }
-
+    
+//Edit actions
     if ($action == 'edit') {
-
+      
       if(!is_dir('img/'.$rep)){
         mkdir('img/'.$rep);
       }
-      //$image = $this->request->getData();
-      //$id = $this->request->getParam('pass');
-      //$image = $this->$var->get($id);
-      //debug($id); die();
+
       if ($var->image!=null && $var->image!='no-avatar.png') {
         unlink(WWW_ROOT.'img/'.$var->image);
       }
@@ -68,7 +66,7 @@ class PhotoComponent extends Component
       }
     }
 
-
+//Delete actions
     if ($action == 'delete') {
       $extension_photo = pathinfo($var->image, PATHINFO_EXTENSION);
       if (!empty($extension_photo) && is_file(WWW_ROOT.'img/'.$var->image)) {
