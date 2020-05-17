@@ -8,17 +8,6 @@ use Cake\Http\ServerRequest;
 class PhotoComponent extends Component
 {
 
-  public function skip_chars($texte){
-    $texte = strip_tags($texte);
-    $texte = strtolower($texte);
-
-    $texte = strtr($chaine, 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ', 'aaaaaaaaaaaaooooooooooooeeeeeeeecciiiiiiiiuuuuuuuuynn');
-    $texte = preg_replace('`[^a-z0-9-]+`', '-', $texte);
-    $texte = preg_replace('`-{2,}`', '-', $texte);
-    $texte = trim($texte, '-');
-
-    return $texte;
-  }
   public function photo($rep,$var,$image=null)
   {
     //-----------------------------------------------------------------------------------------
@@ -85,30 +74,6 @@ class PhotoComponent extends Component
       if (!empty($extension_photo) && is_file(WWW_ROOT.'img/'.$var->image)) {
         unlink(WWW_ROOT.'img/'.$var->image);
       }
-    }
-  }
-
-  public function mois($month){
-    $months = array(
-      1   =>  'Janvier',
-      2   =>  'Fevrier',
-      3   =>  'Mars',
-      4   =>  'Avril',
-      5   =>  'Mai',
-      6   =>  'Juin',
-      7   =>  'Juillet',
-      8   =>  'Aout',
-      9   =>  'Septembre',
-      10  =>  'Octobre',
-      11  =>  'Novembre',
-      12  =>  'Decembre'
-    );
-    return $months[$month];
-  }
-  public function typename($key){
-    if ($key == 1) {
-      $type = 'preventive';
-      return $type;
     }
   }
 
